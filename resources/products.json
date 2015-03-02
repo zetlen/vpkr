@@ -1,0 +1,227 @@
+{
+	"products": 
+    [
+        {
+			"id": "P0001",
+			"name": "Capri Sweatpants",
+			"inCategory": 
+            [
+                "0001",
+                "0101"
+            ]
+        },
+        {
+			"id": "P0002",
+			"name": "Capri Pants",
+			"inCategory": 
+            [
+                "0001",
+                "0101"
+            ]
+        },
+        {
+			"id": "P0003",
+			"name": "Fashion Wedges",
+			"inCategory": 
+            [
+                "0002",
+                "0201"
+            ]
+        },
+        {
+			"id": "P0004",
+			"name": "Flannel Shirt",
+			"inCategory": 
+            [
+                "0001",
+                "0102"
+            ]
+        },
+        {
+			"id": "P0005",
+			"name": "Canvas Butterflies",
+			"inCategory": 
+            [
+                "0002"
+            ]
+        },
+        {
+			"id": "P0006",
+			"name": "Work Boots",
+			"inCategory": 
+            [
+                "0002",
+                "0202"
+            ]
+        },
+        {
+			"id": "P0007",
+			"name": "Canvas High Tops",
+			"inCategory": 
+            [
+                "0002"
+            ]
+        },
+        {
+			"id": "P0008",
+			"name": "Dark Corduroy Shirt",
+			"inCategory": 
+            [
+                "0001",
+                "0102"
+            ]
+        },
+        {
+			"id": "P0009",
+			"name": "Gingham Curtains",
+			"inCategory": 
+            [
+                "0003",
+                "0302"
+            ]
+        },
+        {
+			"id": "P0010",
+			"name": "Jade Vase",
+			"inCategory": 
+            [
+                "0003",
+                "0301"
+            ]
+        },
+        {
+			"id": "P0011",
+			"name": "Frameless Mirror",
+			"inCategory": 
+            [
+                "0003",
+                "0301"
+            ]
+        },
+        {
+			"id": "P0012",
+			"name": "Leg Lamp",
+			"inCategory": 
+            [
+                "0003",
+                "0302"
+            ]
+        },
+        {
+			"id": "P0013",
+			"name": "Nagel Print",
+			"inCategory": 
+            [
+                "0003",
+                "0302"
+            ]
+        },
+        {
+			"id": "P0014",
+			"name": "Colonial Silverware",
+			"inCategory": 
+            [
+                "0004"
+            ]
+        },
+        {
+			"id": "P0015",
+			"name": "Mixing Bowl",
+			"inCategory": 
+            [
+                "0004"
+            ]
+        },
+        {
+			"id": "P0016",
+			"name": "Welding Torch",
+			"inCategory": 
+            [
+                "0005"
+            ]
+        },
+        {
+			"id": "P0017",
+			"name": "Inclined Plane",
+			"inCategory": 
+            [
+                "0005"
+            ]
+        },
+        {
+			"id": "P0018",
+			"name": "Dog Food",
+			"inCategory": 
+            [
+                "0006",
+                "0601"
+            ]
+        },
+        {
+			"id": "P0019",
+			"name": "Cat Litter",
+			"inCategory": 
+            [
+                "0006",
+                "0602"
+            ]
+        },
+        {
+			"id": "P0020",
+			"name": "Iguana Sprinkles",
+			"inCategory": 
+            [
+                "0006",
+                "0603"
+            ]
+        },
+        {
+			"id": "P0021",
+			"name": "Laserdisc Walkman",
+			"inCategory": 
+            [
+                "0007"
+            ]
+        },
+        {
+			"id": "P0022",
+			"name": "Unicycle GPS",
+			"inCategory": 
+            [
+                "0007"
+            ]
+        },
+        {
+			"id": "P0023",
+			"name": "Rake",
+			"inCategory": 
+            [
+                "0008"
+            ]
+        },
+        {
+			"id": "P0024",
+			"name": "Hoe",
+			"inCategory": 
+            [
+                "0008"
+            ]
+        },
+        {
+			"id": "P0025",
+			"name": "Tire Cleaner",
+			"inCategory": 
+            [
+                "0009"
+            ]
+        },
+        {
+			"id": "P0026",
+			"name": "Ground Effects Kit",
+			"inCategory": 
+            [
+                "0009"
+            ]
+        }
+    ]
+}

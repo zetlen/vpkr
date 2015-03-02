@@ -1,0 +1,961 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+		<title>VPKR Example</title>
+	
+		<link rel="stylesheet" href="./css/custom-theme/jquery-ui-1.8.9.custom.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="./css/jquery.vpkr-0.1.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="./css/default.css" type="text/css" media="screen" charset="utf-8" />
+		
+		
+		<style type="text/css" media="screen">
+			
+			body {
+				color: #444;
+				font-family: sans-serif;
+				float: left;
+				width: 99%;
+				background: url("./css/custom-theme/images/ui-bg_diagonals-thick_8_333333_40x40.png") repeat scroll 50% 50% #333333;
+			}
+			
+			p {
+				margin: 1em;
+			}
+			
+			.ui-widget p, .ui-widget ul {
+				font-size: 0.8em;
+			}
+			
+			.ui-widget ul li {
+				margin:1em 0;
+			}
+			
+			.vpkr-example-holder {
+				float: left;
+			}
+			
+			.vpkr-example-holder pre {
+				font-size: 10pt;
+				margin: 0;
+			}
+			
+			.vpkr-example-holder pre code {
+				background: none;
+			}
+			
+			.vpkr-example {
+				float: left;
+				margin: 1em;
+				padding: 1em;
+				border: 1px solid #ddd;
+				background: #efefef;
+			}
+			
+			.vpkr-example .ui-accordion-content {
+				height: 250px;
+				width: 520px;
+			}
+			
+			h1 {
+				padding: 0.4em;
+				margin-top: 0;
+			}
+			
+			h1 span {
+				font-size: 12pt;
+			}
+			
+			h1 a {
+				font-size: 12pt;
+				float: right;
+				color: #ffffff;
+			}
+			
+			h2 {
+				
+				float: left;
+				clear: both;
+				width: 100%;
+				margin-left: 1em;
+				
+			}
+			
+			#intro ul {
+				list-style-type: none;
+				padding-left: 1em;
+			}
+
+			#intro ul li {
+				height: 20px;
+				padding-left: 1em;
+				margin: 0.1em 0;
+				background: transparent url('./css/custom-theme/images/ui-icons_bbbbbb_256x240.png') no-repeat -243px -96px;
+			}
+			
+			.vpkr-example h3 {
+				font-family: sans-serif;
+				color: #444;
+				margin-top: 0;
+			}
+			
+			.wrpr {
+				margin: 0 auto 1.8em;
+				padding: 0 0 1.2em;
+				width: 960px;
+			}
+			
+			.wrpr-inner {
+				float: left;
+			}
+			
+			.holder {
+				margin-bottom: 1.2em;
+				float: left;
+				width: 100%;
+				background: #fff;
+			}
+			
+			#documentation {
+				float: left;
+				margin: 0 0.4em;
+				width: 936px;
+				min-height: 1000px;
+			}
+			
+			.vpkr-table tr input {
+				border: 1px solid #999;
+				padding: 1px;
+			}
+			
+			#documentation .ui-tabs-panel {
+				padding: 0;
+			}
+			
+			#documentation table {
+			font-size: 10pt;
+			border: 1px solid #ddd;
+			border-collapse: collapse;
+			}
+
+			#documentation table th {
+			color: #fff;
+			background: url("./css/custom-theme/images/ui-bg_diagonals-thick_8_333333_40x40.png") repeat scroll 50% 50% #444444;
+			text-align: left;
+			padding: 8px;
+			}
+
+			#documentation table td {
+			padding: 8px;
+			border: 1px solid #ddd;
+			}
+			
+			#documentation xmp {
+				display:inline; font-size: 10pt; font-weight: bold;
+			}
+			
+			
+		</style>
+	
+	</head>
+
+	<body>
+		<div class="wrpr">
+		<div class="wrpr-inner">
+		<div class="holder" id="intro">
+			<h1 class="ui-widget-header">VPKR <span>a totally pronounceable jQuery UI widget</span> <a href="./jquery.vpkr-0.1.zip">Download v0.1</a></h1>
+			<p class="ui-priority-2">VPKR is a filterable, hierarchical data table. It combines the functionality of a data table, an accordion, and an autocomplete.</p>
+			<ul>
+				<li><strong>Flexible data source:</strong> Accepts inline HTML, JSON, or asynchronous AJAX function</li>
+				<li><strong>Searchability:</strong> Typeahead search bar makes sense to users</li>
+				<li><strong>Hierarchy:</strong> Accepts a hierarchical data set and displays as expandable trees</li>
+				<li><strong>Versatility:</strong> Configure "actions" as functions which operate on data records, add form controls to table rows</li>
+				<li><strong>Simplicity:</strong> Small, light, does only the above, doesn't make a mess of the DOM</li>
+				<li><strong>Pronounciation:</strong> "Vip-kurr" (or "vee-picker" if you're boring)</li>
+			</ul>
+		</div>
+
+		<div class="holder">
+			<h2>Examples</h2>
+			<div class="vpkr-example-holder">
+			<div class="vpkr-example" id="hardcoded">
+				<h3>
+					Expandable Tree from Inline HTML
+				</h3>
+				<div class="example-accordion">
+					<h3><a href="#">Widget</a></h3>
+					<div>
+						<table class="vpkr">
+							<tr id="vpkr0-node-0001">
+								<td class="searchable item-name">
+									Apparel
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0001" id="vpkr0-node-0102">
+								<td class="searchable item-name">
+									Men's Apparel
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0001" id="vpkr0-node-0101">
+								<td class="searchable item-name">
+									Women's Apparel
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr id="vpkr0-node-0002">
+								<td class="searchable item-name">
+									Footwear
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0002" id="vpkr0-node-0202">
+								<td class="searchable item-name">
+									Men's Shoes
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0002" id="vpkr0-node-0201">
+								<td class="searchable item-name">
+									Women's Shoes
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr id="vpkr0-node-0003">
+								<td class="searchable item-name">
+									Decor
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0003" id="vpkr0-node-0302">
+								<td class="searchable item-name">
+									Tasteless
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0003" id="vpkr0-node-0301">
+								<td class="searchable item-name">
+									Tasteful
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr id="vpkr0-node-0004">
+								<td class="searchable item-name">
+									Housewares
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr id="vpkr0-node-0005">
+								<td class="searchable item-name">
+									Tools
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr id="vpkr0-node-0006">
+								<td class="searchable item-name">
+									Pet Supplies
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0006" id="vpkr0-node-0603">
+								<td class="searchable item-name">
+									Iguana Supplies
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0006" id="vpkr0-node-0602">
+								<td class="searchable item-name">
+									Cat Supplies
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr class="child-of-vpkr0-node-0006" id="vpkr0-node-0601">
+								<td class="searchable item-name">
+									Dog Supplies
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr id="vpkr0-node-0007">
+								<td class="searchable item-name">
+									Electronics
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr id="vpkr0-node-0008">
+								<td class="searchable item-name">
+									Yard Maintenance
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+							<tr id="vpkr0-node-0009">
+								<td class="searchable item-name">
+									Auto Care
+								</td>
+								<td align="right">
+									<a href="#" class="vpkr-action-edit">Edit</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<h3><a href="#">Markup</a></h3>
+					<div>
+						<pre><code class="language-html">&lt;table class=&quot;vpkr tree expandable clickToExpand&quot;&gt;
+  &lt;tr id=&quot;vpkr0-node-0001&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Apparel
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0001&quot; id=&quot;vpkr0-node-0102&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Men&#x27;s Apparel
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0001&quot; id=&quot;vpkr0-node-0101&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Women&#x27;s Apparel
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0002&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Footwear
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0002&quot; id=&quot;vpkr0-node-0202&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Men&#x27;s Shoes
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0002&quot; id=&quot;vpkr0-node-0201&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Women&#x27;s Shoes
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0003&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Decor
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0003&quot; id=&quot;vpkr0-node-0302&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Tasteless
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0003&quot; id=&quot;vpkr0-node-0301&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Tasteful
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0004&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Housewares
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0005&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Tools
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0006&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Pet Supplies
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0006&quot; id=&quot;vpkr0-node-0603&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Iguana Supplies
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0006&quot; id=&quot;vpkr0-node-0602&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Cat Supplies
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0006&quot; id=&quot;vpkr0-node-0601&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Dog Supplies
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0007&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Electronics
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0008&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Yard Maintenance
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0009&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Auto Care
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+					</div>
+					<h3><a href="#">JavaScript</a></h3>
+					<div>
+						<pre><code class="javascript">
+$('#hardcoded .vpkr').vpkr({
+  name: "hardcoded",
+  actions: {
+    "Edit": function(e) {
+	alert('Editing ' + $.trim( $(this)
+         .closest('tr')
+         .children('.item-name')
+         .text()) + '!');
+    }
+  },
+  dataSource: 'html'
+});
+						</code></pre>
+					</div>
+				</div>
+				
+			</div>
+			</div>
+			
+			<div class="vpkr-example-holder">
+			<div class="vpkr-example" id="dynamic">
+				<h3>AJAX-powered checkable table</h3>
+				<div class="example-accordion">
+					<h3><a href="#">Widget</a></h3>
+					<div>
+						<table class="vpkr">
+
+						</table>
+					</div>
+					<h3><a href="#">Markup</a></h3>
+					<div>
+						<pre><code class="html">
+&lt;table class=&quot;vpkr tree checkable&quot;&gt;
+
+&lt;/table&gt;</code></pre>
+					</div>
+					<h3><a href="#">JavaScript</a></h3>
+					<div>
+						<pre><code class="javascript">
+$('#dynamic .vpkr').vpkr({
+  name: "dynamic",
+  dataSource: function(callback){
+    $.getJSON('./resources/categories.json',
+      function(data){
+        callback(data.categories);
+    });
+  },
+  searchText: "Start typing..."
+});							</code></pre>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="vpkr-example-holder">
+			<div class="vpkr-example" id="dynamic2">
+				<h3>AJAX-powered no-search table with actions</h3>
+				<div class="example-accordion">
+					<h3><a href="#">Widget</a></h3>
+					<div>
+						<table class="vpkr">
+
+						</table>
+					</div>
+					<h3><a href="#">Markup</a></h3>
+					<div><pre><code class="html">&lt;table class=&quot;vpkr&quot;&gt;
+
+&lt;/table&gt;</code></pre>
+					</div>
+					<h3><a href="#">JavaScript</a></h3>
+					<div>
+						<pre><code class="javascript">$('#dynamic2 .vpkr').vpkr({
+  name: "dynamic2",
+  dataSource: function(callback){
+    $.getJSON('./resources/categories.json',function(data){
+      callback(data.categories);
+    })
+  },
+  searchBox: false,
+  actions: {
+    "Edit": function(e,data) {
+      var row = $(this);
+      row.children('.item-name')
+       .html('&lt;input type=&quot;text&quot; value=&quot;&#x27; + data.name + &#x27;&quot; /&gt;')
+       .children('input')
+       .bind('keyup.vpkr',function(e){
+        if (e.which===13) {
+          row.data('vpkr-data',$.extend(row.data('vpkr-data'),{name:this.value}));
+          $(this).parent().text(this.value);
+        }
+      });
+    },
+    "Flash": function(e,data) {
+      $(this).effect('highlight')
+    },
+    "Delete": function(e,data) {
+      $(this).remove();
+    }
+  }
+});							
+						</code></pre>
+					</div>
+				</div>
+			</div>
+			<code>
+
+			</code>
+			</div>
+		</div>
+		
+		<div class="holder">
+			<h2>Documentation</h2>
+			<div id="documentation">
+				<ul>
+					<li><a href="#usage">Usage</a></li>
+					<li><a href="#configuration">Configuration</a></li>
+					<li><a href="#methods">Methods</a></li>
+					<li><a href="#json-structure">JSON Structure</a></li>
+					<li><a href="#markup-structure">Inline Markup Structure</a></li>
+				</ul>
+				<div id="usage">
+					<p>At minimum, VPKR needs a table tag.</p>
+					<pre><code language="html">&lt;table&gt;&lt;/table&gt;</code></pre>
+					<p>You can attach a VPKR to this table in one simple command:</p>
+					<pre><code language="javascript">$('table').vpkr();</code></pre>
+					<p>Of course, this table will be empty. If you don't provide VPKR with a data source, it will attempt to populate from the table itself. It will only be successful at this if your HTML follows the VPKR <a class="tabslink" href="#markup-structure">Markup Structure</a>.</p>
+					
+					<h3>Markup Conventions</h3>
+					<p>You can specify boolean options for your VPKR in your HTML, by adding those boolean options as classnames.</p>
+					<pre><code language="html">
+&lt;table id=&quot;foo&quot; class=&quot;tree expandable clickToExpand&quot;&gt;&lt;/table&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $(function(){
+    $("#foo").vpkr({dataSource:someObj});
+  })
+&lt;/script&gt;
+</code></pre>
+					<p>is equivalent to</p>
+					<pre><code language="html">
+&lt;table id=&quot;foo&quot;&gt;&lt;/table&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $(function(){
+    $("#foo").vpkr({tree: true, expandable: true, clickToExpand: true, dataSource:someObj});
+  })
+&lt;/script&gt;
+</code></pre>
+					
+					<h3>External Data</h3>
+					<p>VPKR is more powerful if you provide it with external data. The data must follow the VPKR <a class="tabslink" href="#json-structure">JSON Structure</a>, and it can be delivered either synchronously, by setting the dataSource option to the JSON itself, or asynchronously, by setting dataSource to a function that takes a single parameter. The examples above use a jQuery AJAX call to a JSON file.</p>
+					<pre><code languade="javascript">
+  dataSource: function(callback){
+    $.getJSON('./resources/categories.json',
+      function(data){
+        callback(data.categories);
+    });
+  }</code></pre>
+					<p>Note that the function argued to dataSource must take a "callback" argument; VPKR will send its own callback method to the function, which the function must then execute with the JSON.</p>
+					<p>It's also possible to update the VPKR with external JSON, using the .vpkr('update') method:</p>
+					<pre><code language="javascript">
+$('#some_table').ajaxComplete(function(e,xhr){
+  $(this).vpkr('update',$.parseJSON(xhr.responseText));
+})</code></pre>
+					<p>With no argument, the .vpkr('update') method will reload from the original data source.</p>
+						
+						
+				</div>
+				<div id="configuration">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<th>Key</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td>actions</td>
+							<td>object (function map)</td>
+							<td><em>None</em></td>
+							<td>An optional object map of functions. The keys of this object, e.g. "Edit", will display as text links on each row. The functions will be executed in the context of the &lt;tr /&gt; DOM element, and receive two arguments: the jQuery event object, and, if there was an external data source, the data row associated with that table.</td>
+						<tr>
+							<td>tree</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>Displays the table data hierarchically, based on the "childOf" value in the data set.</td>
+						</tr>
+						<tr>
+							<td>expandable</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>Creates buttons to expand and collapse subtrees. Requires "tree".</td>
+						</tr>
+						<tr>
+							<td>clickToExpand</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>Makes the row names clickable to expand and collapse subtrees. Requires "tree", "expandable".</td>
+						</tr>
+						<tr>
+							<td>initialState</td>
+							<td>string</td>
+							<td>"collapsed"</td>
+							<td>If set to "expanded", expands all trees upon population.</td>
+						</tr>
+						<tr>
+							<td>checkable</td>
+							<td>string</td>
+							<td><em>None</em></td>
+							<td>Adds form controls to the table rows. Argue "checkbox" or "radio". </td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>string</td>
+							<td><em>None</em></td>
+							<td>For usage as an identifier and in forms, to name your checkboxes.</td>
+						</tr>
+						<tr>
+							<td>dataSource</td>
+							<td>function, JSON object</td>
+							<td><em>None</em></td>
+							<td>Accepts an external data source. If left blank, will attempt to populate from HTML already inside the table. If JSON, will populate with that JSON. Arguing a function can make table population asynchronous. The function must take a callback parameter and execute that callback with one argument--the data returned from the asynchronous function.</td>
+						</tr>
+						<tr>
+							<td>searchBox</td>
+							<td>jQuery object</td>
+							<td><em>None</em></td>
+							<td>Optionally accepts an external input element to serve as a search box. If this option is not used, VPKR will create a search box on the top border of the table.</td>
+						</tr>
+						<tr>
+							<td>showAllButton</td>
+							<td>jQuery object</td>
+							<td><em>None</em></td>
+							<td>Optionally accepts an external element to serve as a "show all" or "clear search" button.</td>
+						</tr>
+						<tr>
+							<td>searchText</td>
+							<td>string</td>
+							<td>"Search..."</td>
+							<td>Sets the default prompt in the autogenerated search box.</td>
+						</tr>
+						<tr>
+							<td>indent</td>
+							<td>integer</td>
+							<td>20</td>
+							<td>Sets the indent, in pixels, for each subtree.</td>
+						</tr>
+						<tr>
+							<td>wrap</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>If true, wraps the initial table in container elements. Set "false" only if the VPKR renders poorly otherwise.</td>
+						</tr>
+						<tr>
+							<td>width</td>
+							<td>integer</td>
+							<td>500</td>
+							<td>Width of the VPKR table.</td>
+						</tr>
+						<tr>
+							<td>height</td>
+							<td>integer</td>
+							<td>200</td>
+							<td>Height of the VPKR table (not counting search box).</td>
+						</tr>
+						
+					</table>
+				</div>
+				<div id="methods">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<th>Name</th>
+							<th>Arguments</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td>collapse</td>
+							<td>.vpkr('collapse',<em>$tr</em>)</td>
+							<td>Collapse an expanded row, recursively. Requires a jQuery-wrapped &lt;tr&gt; element.</td>
+						<tr>
+							<td>expand</td>
+							<td>.vpkr('expand',<em>$tr</em>)</td>
+							<td>Expand a collapsed row. Requires a jQuery-wrapped &lt;tr&gt; element.</td>
+						</tr>
+						<tr>
+							<td>clearSearch</td>
+							<td>.vpkr('clearSearch')</td>
+							<td>Clear any filter characters from the search box and display all uncollapsed rows.</td>
+						</tr>
+						<tr>
+							<td>filter</td>
+							<td>.vpkr('filter',<em>string</em>)</td>
+							<td>Filter the list by a string. The searchbox uses this method.</td>
+						</tr>
+						<tr>
+							<td>update</td>
+							<td>.vpkr('update', <em>[json]</em>)</td>
+							<td>Update and repopulate the table. If you pass a parameter, it must be a JSON object. If you pass no parameter, it will update from the original data source.</td>
+						</tr>
+					</table>
+				</div>
+				<div id="json-structure">
+					<p>If you are generating your VPKR using external data, then first of all, good for you. This is the way to do things. Secondly, this external data must conform to an existing format. It must be an <strong>an array of data objects</strong>, with each object having at minimum an "id", "name", and, if the record has a parent record, a "childOf" property. The "id" and "name" properties must be strings, and the "childOf" property, if present, must contain the ID of the parent record, e.g.:</p>
+					<pre><code language="javascript">[
+	{
+		"id": "0001",
+		"name": "Apparel"
+	},
+	{
+		"id": "0101",
+		"name": "Women's Apparel",
+		"childOf": "0001"
+	},
+	{
+		"id": "0102",
+		"name": "Men's Apparel",
+		"childOf": "0001"
+	},
+	{
+		"id": "0002",
+		"name": "Footwear"
+	}, 
+	
+	(...)
+	
+}</code></pre>
+					<p>Note that the JSON structure provides its hierarchy by reference, instead of actually storing data records beneath other records. The HTML structure that VPKR creates reflects this as well. This has show to dramatically increase performance.</p>
+					<p>If you'll be parsing inline HTML in the table, instead of using an external data source, then first allow me to register my mild disapproval, and then check out the <a class="tabslink" href="#markup-structure">Markup Structure</a>.</p>
+					<p>Notes:</p>
+					<ul>
+						<li>Parse the JSON into an object before delivering to the VPKR. JQuery's AJAX functions will typically do this automatically.</li>
+						<li>The data record can contain other keys. They will not be displayed to the user, but they will be stored and available in the data object received by your action functions.</li>
+						<li>The "name" field can contain HTML that you want rendered into the table. All text is searchable. A neat trick for searching hidden text is to add a &lt;span style="display:none"&gt;&lt;/span&gt; to the name field.</li>
+						<li>Upcoming versions of VPKR will be able to deal with data in a literal hierarchy, or perhaps even XML.</li>
+					</ul>
+					
+				</div>
+				<div id="markup-structure">
+					<p>In order for VPKR to read a table into its data store, your application will have to render HTML that VPKR would have rendered itself. Fortunately, VPKR's HTML is relatively simple!</p>
+					<pre><code language="html">
+&lt;table class=&quot;vpkr tree expandable clickToExpand&quot;&gt;
+  &lt;tr id=&quot;vpkr0-node-0001&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Apparel
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0001&quot; id=&quot;vpkr0-node-0102&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Men&#x27;s Apparel
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class=&quot;child-of-vpkr0-node-0001&quot; id=&quot;vpkr0-node-0101&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Women&#x27;s Apparel
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr id=&quot;vpkr0-node-0002&quot;&gt;
+    &lt;td class=&quot;searchable item-name&quot;&gt;
+      Footwear
+    &lt;/td&gt;
+    &lt;td align=&quot;right&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;vpkr-action-edit&quot;&gt;Edit&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+(...)
+&lt;/table&gt;
+</code></pre>
+					<p>First, you must create a unique prefix for all of your table rows. The above example uses <xmp>vpkr0-node-</xmp>. Each table row element must have an ID consisting of the prefix, and then the ID of the data in the row. Table row elements for child nodes (which may come in any order) must have an ID, and also a classname consisting of the prefix "child-of-" and then the prefix, and then the ID of the parent.</p>
+					<p>Identify certain text nodes as containing searchable text using the "searchable" class. The filter function will only examine these nodes.</p>
+					<p>Any actions you have configured in your VPKR constructor must have their links hardcoded into this table, as in the example above. The functions you put in the actions array will run when you click those links, even though VPKR did not generate them itself.</p>
+					<p>Notes:</p>
+					<ul>
+						<li>The VPKR table element can contain classnames corresponding to boolean options in the VPKR widget. The presence of these classnames sets these options to true. This allows you to use the same VPKR incantation on multiple tables on the same page with different options, all called with e.g. <xmp>$('.vpkr').vpkr();</xmp>. Huzzah!</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		
+		<script src="./js/jquery-1.5.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/jquery-ui-1.8.9.custom.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/jquery.vpkr-0.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			//<![CDATA[
+				$(document).ready(function(){
+					
+					$('#documentation').tabs();
+					
+					$('.tabslink').click(function(){
+						$('#documentation').tabs('select',$(this).attr('href'));
+					})
+					
+					$('.example-accordion').accordion({
+						autoHeight: false,
+						width: 600,
+						height: 300
+					});
+					
+					$('#hardcoded .vpkr').vpkr({
+						name: "hardcoded",
+						actions: {
+							"Edit": function(e) {
+								alert('Editing ' + $.trim($(this).closest('tr').children('.item-name').text()) + '!');
+							}
+						},
+						dataSource: 'html',
+						tree: true,
+						expandable: true,
+						clickToExpand: true
+					});
+					
+					$('#dynamic .vpkr').vpkr({
+						checkable: "radio",
+						name: "dynamic",
+						data: {
+							populate: function(callback){
+								$.getJSON('./resources/categories.json',function(data){
+									callback(data.categories);
+								})
+							}
+						},
+						searchText: "Start typing...",
+						tree: true
+					});
+					
+					$('#dynamic2 .vpkr').vpkr({
+						name: "dynamic2",
+						data: {
+							populate: function(callback) {
+								$.getJSON('./resources/categories.json',function(data){
+									callback(data.categories);
+								})
+							}
+						},
+						searchBox: false,
+						actions: {
+							"Edit": function(e,data) {
+								var row = $(this);
+								row.children('.item-name').html('<input type="text" value="' + data.name + '" />').children('input').bind('keyup.vpkr',function(e){
+									if (e.which===13) {
+										row.data('vpkr-data',$.extend(row.data('vpkr-data'),{name:this.value}));
+										$(this).parent().text(this.value);
+									}
+								});
+							},
+							"Flash": function(e,data) {
+								$(this).effect('highlight')
+							},
+							"Delete": function(e,data) {
+								$(this).remove();
+							}
+						}
+					});
+					
+				})
+			//]]>
+		</script>
+		
+		<script src="./js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		      hljs.initHighlightingOnLoad();
+		</script>
+		
+	</body>
+</html>
